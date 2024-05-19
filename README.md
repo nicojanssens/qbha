@@ -18,7 +18,8 @@ The application runs as a Docker container. It is also available as a Home Assis
 - New Qbus entities are automatically added to Home Assistant.
 - Entities get a persistent ID in Home Assistant, even when changing the Qbus entity names in Serial Manager or when Qbus MQTT rebuilds.
 - Climate entity in Home Assistant reflects current temperature, requested temperature and preset, regardless of whether you change the temperature by preset or manually.
-- Climate entity in Home Assistant automatically sets its mode to either `heat` or `off`.
+- Climate entity in Home Assistant automatically sets its mode to either `heat`, `heat` or `off`.
+- Hard-coded 2 deg hysteresis to switch between cooling and heating or to turn tthe heating/cooling device off.
 - When Home Assistant restarts, all Qbus entities will report their current state.
 - Supports multiple controllers.
 
@@ -37,7 +38,7 @@ All customizations are optional.
 | Dimmer | Light |
 | On/Off | Switch |
 | Shutter | Cover |
-| Thermostat | Climate (heating only) |
+| Thermostat | Climate |
 | Scene | Scene |
 
 ## Setup

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.1] - 2024-05-19
+
+### Added
+
+- Climate now supports heat, cool and off mode.
+- Hard-coded 2 deg hysteresis to switch between cooling and heating or to turn tthe heating/cooling device off.
+
+
 ## [0.6.0] - 2024-01-12
 
 ### Added
