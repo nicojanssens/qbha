@@ -262,9 +262,19 @@ class QbusConfigSubscriber(Subscriber):
         message.payload.current_temperature_topic = message.payload.state_topic
         message.payload.current_temperature_template = "{%- if value_json.properties.currTemp is defined -%} {{ value_json.properties.currTemp }} {%- endif -%}"
 
-        message.payload.modes = ["heat", "off"]
+        message.payload.modes = ["heat", "cool", "off"]
         message.payload.mode_state_topic = message.payload.state_topic
-        message.payload.mode_state_template = "{%- if value_json.properties.setTemp is defined and value_json.properties.currTemp is defined -%} {%- if value_json.properties.setTemp > value_json.properties.currTemp -%} heat {%- else -%} off {%- endif -%} {%- else -%} off {%- endif -%}"
+        message.payload.mode_state_template =  """  {%- if value_json.properties.setTemp is defined and value_json.properties.currTemp is defined -%} 
+                                                        {%- if value_json.properties.currTemp < (value_json.properties.setTemp - 1) -%} 
+                                                            heat 
+                                                        {%- if value_json.properties.currTemp > (value_json.properties.setTemp + 1) -%} 
+                                                            cool
+                                                        {%- else -%} 
+                                                            off 
+                                                        {%- endif -%} 
+                                                    {%- else -%} 
+                                                        off
+                                                    {%- endif -%}  """
 
         message.payload.preset_modes = self._settings.ClimatePresets
         message.payload.preset_mode_command_topic = message.payload.command_topic
