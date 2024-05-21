@@ -267,7 +267,7 @@ class QbusConfigSubscriber(Subscriber):
         message.payload.mode_state_template =  """  {%- if value_json.properties.setTemp is defined and value_json.properties.currTemp is defined -%} 
                                                         {%- if value_json.properties.currTemp < (value_json.properties.setTemp - 1) -%} 
                                                             heat 
-                                                        {%- if value_json.properties.currTemp > (value_json.properties.setTemp + 1) -%} 
+                                                        {%- elif value_json.properties.currTemp > (value_json.properties.setTemp + 1) -%} 
                                                             cool
                                                         {%- else -%} 
                                                             off 
